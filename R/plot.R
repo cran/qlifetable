@@ -49,6 +49,8 @@ plot.qlifetable <- function(x, ..., range.ages = NULL, key = "numbers", decimal.
                             show.plot = TRUE
                            ){
 
+#  argg <- c(as.list(environment()), list(...))
+
   if (key != "numbers" & key != "percentages")
     stop("The 'key' argument is not properly defined. Only 'numbers' and 'percentages' are allowed.")
 
@@ -56,6 +58,9 @@ plot.qlifetable <- function(x, ..., range.ages = NULL, key = "numbers", decimal.
     stop("'x' does not have the expected structure")
 
   names(x) <- c("age", "quarter.age", "quarter.calendar", "number.events")
+
+#  if ("colour.values" %in% names(argg)) color.values <- colour.values
+#  if ("colour.palette" %in% names(argg)) color.palette <- colour.palette
 
   datos <- x
   number.decimals <- decimal.digits
@@ -68,23 +73,32 @@ plot.qlifetable <- function(x, ..., range.ages = NULL, key = "numbers", decimal.
   total_events <- sum(datos$number.events)
 
   edades <- dim(datos)[1L]/16L
-  tabla <- datos[1L:16L, 1L:3L]
+  tabla <- datos[1L:16L, 1L:4L]
+  names(tabla) <- c("label", "quarter.age", "quarter.calendar", "Total_quarter")
   tabla$Total_quarter <- 0L
 
   for (i in 1L:edades){
-    tabla$Total_quarter <- tabla$Total_quarter + datos$number.events[(1L + (i - 1) * 16L):(i * 16L)]
+    tabla$Total_quarter <- tabla$Total_quarter +
+      datos$number.events[(1L + (i - 1) * 16L):(i * 16L)]
   }
 
-  tabla$Total_quarter <- tabla$Total_quarter / ifelse(key == "numbers", 1L , total_events)
+  tabla$Total_quarter <- tabla$Total_quarter*100 / ifelse(key == "numbers", 100L , total_events)
+  tabla$quarter.calendar <- factor(as.factor(tabla$quarter.calendar),
+                              levels = c("Winter", "Spring", "Summer", "Autumn"))
+  tabla$quarter.age <- as.factor(tabla$quarter.age)
+  tabla$label <- format(round(tabla$Total_quarter, number.decimals),
+                        nsmall = number.decimals,
+                        big.mark = big.mark)
 
 #  tabla <- datos %>%
 #    group_by(quarter.calendar, quarter.age) %>%
 #    summarise(Total_quarter = sum(number.events) / ifelse(key == "numbers", 1 , total_events))
 
-  p <- ggplot2::ggplot(tabla,
-                       ggplot2::aes(x = as.factor(tabla$quarter.calendar),
-                                    y = as.factor(tabla$quarter.age))) +
-    ggplot2::geom_raster(ggplot2::aes(fill = tabla$Total_quarter), position = "identity") +
+  p <- ggplot2::ggplot(data = tabla,
+                       mapping = ggplot2::aes(x = !!quote(quarter.calendar),
+                                              y = !!quote(quarter.age))) +
+    ggplot2::geom_raster(mapping = ggplot2::aes(fill = !!quote(Total_quarter)),
+                         position = "identity") +
     ggplot2::scale_size_continuous(range = c(min(tabla$Total_quarter), max(tabla$Total_quarter))) +
     ggplot2::scale_fill_continuous(high = scales::alpha(colour = color.palette, alpha = alpha.max),
                                    low =  scales::alpha(colour = color.palette, alpha = alpha.min))  +
@@ -97,9 +111,7 @@ plot.qlifetable <- function(x, ..., range.ages = NULL, key = "numbers", decimal.
     ggplot2::scale_y_discrete(labels = name.labels.age) +
     ggplot2::xlab("Season quarter") +
     ggplot2::ylab("Age quarter") +
-    ggplot2::geom_text(ggplot2::aes(label = format(round(tabla$Total_quarter, number.decimals),
-                                                   nsmall = number.decimals,
-                                                    big.mark = big.mark)),
+    ggplot2::geom_text(ggplot2::aes(label = !!quote(label)),
                        size = size.values,
                        col = color.values)
 
