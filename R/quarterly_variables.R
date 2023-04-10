@@ -48,47 +48,47 @@
 #
 quarterly_variables <- function(date.birth, date.event, random.b = TRUE, random.e = TRUE, constant.age.year = FALSE){
 
-  if (length(date.birth) != length(date.event) & length(date.event) != 1L)
-    stop("The lengths of date.birth and date.event differ.")
+#  if (length(date.birth) != length(date.event) & length(date.event) != 1L)
+#    stop("The lengths of date.birth and date.event differ.")
 
-  date.birth <- as.character(date.birth)
-  date.event <- as.character(date.event)
+#  date.birth <- as.character(date.birth)
+#  date.event <- as.character(date.event)
 
-  if (random.e){
-    n <- length(date.event)
-    hh <- formatC(sample(0L:23L, n, replace = T), width = 2L, format = "d", flag = "0")
-    mm <- formatC(sample(0L:59L, n, replace = T), width = 2L, format = "d", flag = "0")
-    ss <- formatC(sample(0L:59L, n, replace = T), width = 2L, format = "d", flag = "0")
-    date.event <- paste(substr(date.event, 1L, 10L), paste(hh, mm, ss, sep = ":"))
-  } else {
-    if (nchar(date.event[1L]) == 10L)
-      date.event <- paste(substr(date.event, 1L, 10L), "12:00:00")
-  }
+#  if (random.e){
+#    n <- length(date.event)
+#    hh <- formatC(sample(0L:23L, n, replace = T), width = 2L, format = "d", flag = "0")
+#    mm <- formatC(sample(0L:59L, n, replace = T), width = 2L, format = "d", flag = "0")
+#    ss <- formatC(sample(0L:59L, n, replace = T), width = 2L, format = "d", flag = "0")
+#    date.event <- paste(substr(date.event, 1L, 10L), paste(hh, mm, ss, sep = ":"))
+#  } else {
+#    if (nchar(date.event[1L]) == 10L)
+#      date.event <- paste(substr(date.event, 1L, 10L), "12:00:00")
+#  }
 
-  if (random.b){
-    n <- length(date.birth)
-    hh <- formatC(sample(0L:23L, n, replace = T), width = 2L, format = "d", flag = "0")
-    mm <- formatC(sample(0L:59L, n, replace = T), width = 2L, format = "d", flag = "0")
-    ss <- formatC(sample(0L:59L, n, replace = T), width = 2L, format = "d", flag = "0")
-    date.birth <- paste(substr(date.birth, 1L, 10L), paste(hh, mm, ss, sep = ":"))
-  } else {
-    if (nchar(date.birth[1L]) == 10L)
-      date.birth <- paste(substr(date.birth, 1L, 10L), "12:00:00")
-  }
+#  if (random.b){
+#    n <- length(date.birth)
+#    hh <- formatC(sample(0L:23L, n, replace = T), width = 2L, format = "d", flag = "0")
+#    mm <- formatC(sample(0L:59L, n, replace = T), width = 2L, format = "d", flag = "0")
+#    ss <- formatC(sample(0L:59L, n, replace = T), width = 2L, format = "d", flag = "0")
+#    date.birth <- paste(substr(date.birth, 1L, 10L), paste(hh, mm, ss, sep = ":"))
+#  } else {
+#    if (nchar(date.birth[1L]) == 10L)
+#      date.birth <- paste(substr(date.birth, 1L, 10L), "12:00:00")
+#  }
 
-  date.birth <- as.POSIXct(date.birth, tz = "GMT", tryFormats = "%Y-%m-%d %H:%M:%OS")
-  date.event <- as.POSIXct(date.event, tz = "GMT", tryFormats = "%Y-%m-%d %H:%M:%OS")
+#  date.birth <- as.POSIXct(date.birth, tz = "GMT", tryFormats = "%Y-%m-%d %H:%M:%OS")
+#  date.event <- as.POSIXct(date.event, tz = "GMT", tryFormats = "%Y-%m-%d %H:%M:%OS")
 
-  if (random.e){
-    same <- which(substr(date.birth, 1L, 10L) == substr(date.event, 1L, 10L))
-    birth <- date.birth[same]
-    date.event[same] <- simula_post(fijo = birth)
-  }
-  if (!random.e & random.b){
-    same <- which(substr(date.birth, 1L, 10L) == substr(date.event, 1L, 10L))
-    event <- date.event[same]
-    date.birth[same] <- simula_ant(fijo = event)
-  }
+#  if (random.e){
+#    same <- which(substr(date.birth, 1L, 10L) == substr(date.event, 1L, 10L))
+#    birth <- date.birth[same]
+#    date.event[same] <- simula_post(fijo = birth)
+#  }
+#  if (!random.e & random.b){
+#    same <- which(substr(date.birth, 1L, 10L) == substr(date.event, 1L, 10L))
+#    event <- date.event[same]
+#    date.birth[same] <- simula_ant(fijo = event)
+#  }
 
   output <- as.data.frame(matrix(NA, nrow = length(date.birth), ncol = 7L))
   names(output) <- c("coord.age", "coord.time", "age.last.birthday", "exact.age.at.event", "quarter.age", "quarter.calendar", "year")
@@ -97,9 +97,9 @@ quarterly_variables <- function(date.birth, date.event, random.b = TRUE, random.
   output$coord.time <- coord_time(date.event = date.event, random.e = FALSE)
   output$age.last.birthday <- floor(output$exact.age.at.event)
   output$coord.age <- output$exact.age.at.event - output$age.last.birthday
-  output$quarter.age <- floor(4*output$coord.age) + 1
-  output$quarter.calendar <- floor(4*output$coord.time) + 1
-  output$year <- as.numeric(format(date.event, "%Y"))
+  output$quarter.age <- floor(4L*output$coord.age) + 1L
+  output$quarter.calendar <- floor(4L*output$coord.time) + 1L
+  output$year <- as.numeric(substr(date.event, 1L, 4L))
 
 #  class(output) <- c("quarterly_variables")
 

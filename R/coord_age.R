@@ -45,48 +45,48 @@
 
 coord_age <- function(date.birth, date.event, random.b = TRUE, random.e = TRUE, constant.age.year = FALSE){
 
-  if (length(date.birth) != length(date.event) & length(date.event) != 1L)
-    stop("The lengths of date.birth and date.event differ.")
+#  if (length(date.birth) != length(date.event) & length(date.event) != 1L)
+#    stop("The lengths of date.birth and date.event differ.")
 
-  date.birth <- as.character(date.birth)
-  date.event <- as.character(date.event)
+#  date.birth <- as.character(date.birth)
+#  date.event <- as.character(date.event)
 
-  if (random.e){
-    n <- length(date.event)
-    hh <- formatC(sample(0L:23L, n, replace = T), width = 2L, format = "d", flag = "0")
-    mm <- formatC(sample(0L:59L, n, replace = T), width = 2L, format = "d", flag = "0")
-    ss <- formatC(sample(0L:59L, n, replace = T), width = 2L, format = "d", flag = "0")
-    date.event <- paste(substr(date.event, 1L, 10L), paste(hh, mm, ss, sep = ":"))
-  } else {
-    if (nchar(date.event[1L]) == 10L)
-      date.event <- paste(substr(date.event, 1L, 10L), "12:00:00")
-  }
+#  if (random.e){
+#    n <- length(date.event)
+#    hh <- formatC(sample(0L:23L, n, replace = T), width = 2L, format = "d", flag = "0")
+#    mm <- formatC(sample(0L:59L, n, replace = T), width = 2L, format = "d", flag = "0")
+#    ss <- formatC(sample(0L:59L, n, replace = T), width = 2L, format = "d", flag = "0")
+#    date.event <- paste(substr(date.event, 1L, 10L), paste(hh, mm, ss, sep = ":"))
+#  } else {
+#    if (nchar(date.event[1L]) == 10L)
+#      date.event <- paste(substr(date.event, 1L, 10L), "12:00:00")
+#  }
 
-  if (random.b){
-    n <- length(date.birth)
-    hh <- formatC(sample(0L:23L, n, replace = T), width = 2L, format = "d", flag = "0")
-    mm <- formatC(sample(0L:59L, n, replace = T), width = 2L, format = "d", flag = "0")
-    ss <- formatC(sample(0L:59L, n, replace = T), width = 2L, format = "d", flag = "0")
-    date.birth <- paste(substr(date.birth, 1L, 10L), paste(hh, mm, ss, sep = ":"))
-  } else {
-    if (nchar(date.birth[1L]) == 10L)
-      date.birth <- paste(substr(date.birth, 1L, 10L), "12:00:00")
-  }
+#  if (random.b){
+#    n <- length(date.birth)
+#    hh <- formatC(sample(0L:23L, n, replace = T), width = 2L, format = "d", flag = "0")
+#    mm <- formatC(sample(0L:59L, n, replace = T), width = 2L, format = "d", flag = "0")
+#    ss <- formatC(sample(0L:59L, n, replace = T), width = 2L, format = "d", flag = "0")
+#    date.birth <- paste(substr(date.birth, 1L, 10L), paste(hh, mm, ss, sep = ":"))
+#  } else {
+#    if (nchar(date.birth[1L]) == 10L)
+#      date.birth <- paste(substr(date.birth, 1L, 10L), "12:00:00")
+#  }
 
-  date.birth <- as.POSIXct(date.birth, tz = "GMT", tryFormats = "%Y-%m-%d %H:%M:%OS")
-  date.event <- as.POSIXct(date.event, tz = "GMT", tryFormats = "%Y-%m-%d %H:%M:%OS")
-  year <- as.numeric(format(date.event, "%Y"))
+#  date.birth <- as.POSIXct(date.birth, tz = "GMT", tryFormats = "%Y-%m-%d %H:%M:%OS")
+#  date.event <- as.POSIXct(date.event, tz = "GMT", tryFormats = "%Y-%m-%d %H:%M:%OS")
+#  year <- as.numeric(format(date.event, "%Y"))
 
-  if (random.e){
-    same <- which(substr(date.birth, 1L, 10L) == substr(date.event, 1L, 10L))
-    birth <- date.birth[same]
-    date.event[same] <- simula_post(fijo = birth)
-  }
-  if (!random.e & random.b){
-    same <- which(substr(date.birth, 1L, 10L) == substr(date.event, 1L, 10L))
-    event <- date.event[same]
-    date.birth[same] <- simula_ant(fijo = event)
-  }
+#  if (random.e){
+#    same <- which(substr(date.birth, 1L, 10L) == substr(date.event, 1L, 10L))
+#    birth <- date.birth[same]
+#    date.event[same] <- simula_post(fijo = birth)
+#  }
+#  if (!random.e & random.b){
+#    same <- which(substr(date.birth, 1L, 10L) == substr(date.event, 1L, 10L))
+#    event <- date.event[same]
+#    date.birth[same] <- simula_ant(fijo = event)
+#  }
 
   age.at.event <- exact_age(date.birth = date.birth, date.event = date.event,
                             random.b = FALSE, random.e = FALSE,
