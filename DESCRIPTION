@@ -1,6 +1,6 @@
 Package: qlifetable
 Title: Managing and Building of Quarterly Life Tables
-Version: 0.0.1-14
+Version: 0.0.1-15
 Authors@R: 
     c(person(given = "Jose M.",
            family = "Pavía",
@@ -20,11 +20,13 @@ License: EPL
 Encoding: UTF-8
 Imports: stats, methods
 Suggests: ggplot2, scales
+LazyData: true
 RoxygenNote: 7.1.1
+Depends: R (>= 3.5.0)
 NeedsCompilation: no
-Packaged: 2023-04-08 17:44:28 UTC; Jose M Pavia
+Packaged: 2023-04-15 15:46:37 UTC; Jose M Pavia
 Author: Jose M. Pavía [aut, cre] (<https://orcid.org/0000-0002-0129-726X>),
   Josep Lledó [aut]
 Maintainer: Jose M. Pavía <jose.m.pavia@uv.es>
 Repository: CRAN
-Date/Publication: 2023-04-10 23:10:02 UTC
+Date/Publication: 2023-04-19 12:20:02 UTC

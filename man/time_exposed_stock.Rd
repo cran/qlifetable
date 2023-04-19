@@ -59,13 +59,13 @@ If the census (stock) of the population is performed at the beginning of the yea
 it is initially assumed that all the people is going to survive (is going to be at risk) up to
 the end of the year. In this case `type = "forward"` should be used and the total time exposed
 at risk, in each age a and (r, s) quarter, is through:
-T(a, r, s) = time_exposed_stock(P) + time_exposed_ins(E) - time_exposed_ins(I) -
+T(a, r, s) = time_exposed_stock(P) + time_exposed_ins(I) - time_exposed_ins(E) -
 time_exposed_ins(D) + time_exposed_newborns(B).
 
 If the census (stock) of population is performed at the end of the year of interest, only the people
 who survives up to that date is included in the counting. In this case `type = "backward"`
 should be used and the total time exposed at risk, in each age a and (r, s) quarter, is computed
-using the expression: T(a, r, s) = time_exposed_survivors(P) - time_exposed_outs(E) + time_exposed_outs(I) +
+using the expression: T(a, r, s) = time_exposed_survivors(P) - time_exposed_outs(I) + time_exposed_outs(E) +
 time_exposed_outs(D).
 }
 \examples{

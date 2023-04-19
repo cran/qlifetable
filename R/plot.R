@@ -84,7 +84,7 @@ plot.qlifetable <- function(x, ..., range.ages = NULL, key = "numbers", decimal.
 
   tabla$Total_quarter <- tabla$Total_quarter*100 / ifelse(key == "numbers", 100L , total_events)
   tabla$quarter.calendar <- factor(as.factor(tabla$quarter.calendar),
-                              levels = c("Winter", "Spring", "Summer", "Autumn"))
+                              labels = name.labels.season)
   tabla$quarter.age <- as.factor(tabla$quarter.age)
   tabla$label <- format(round(tabla$Total_quarter, number.decimals),
                         nsmall = number.decimals,
