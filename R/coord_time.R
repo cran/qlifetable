@@ -14,7 +14,7 @@
 #' @return
 #' A numeric vector of the same length as data.event
 #'
-#'  @seealso \code{\link{coord_age}}, \code{\link{exact_age}}
+#' @seealso \code{\link{coord_age}}, \code{\link{exact_age}}
 #'
 #' @export
 #'

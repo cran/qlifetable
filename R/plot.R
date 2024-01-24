@@ -9,7 +9,7 @@
 #' @param x A data frame of quarterly summary statistics. Typically an output of the function \code{\link{count_events_quarter}} or whatever of the time_exposed_ functions (e.g., \code{\link{time_exposed_outs}}).
 #' @param ... Other arguments passed on to methods. Not currently used.
 #' @param range.ages A vector of integers informing the aggregation of ages for which the graphical representation should be plotted. Default, NULL, the agggregation of all ages is shown.
-#' @param key Type of statistic to be presented in the plot. Either 'numbers' or relative 'percentages'.
+#' @param key Type of statistic to be presented in the plot. Either "numbers" or relative "percentages". Default, "numbers".
 #' @param decimal.digits Integer indicating the number of decimal places to be shown. Default, 2.
 #' @param color.palette Background base color for cells. Default, "grey".
 #' @param alpha.max A number in the interval [0, 1]. Maximum level of transparency to be applied for the background to build the palette. Default, 1.
@@ -119,5 +119,8 @@ plot.qlifetable <- function(x, ..., range.ages = NULL, key = "numbers", decimal.
   return(p)
 }
 
-qlifetable <- setClass("qlifetable", contains = "data.frame")
-setMethod("plot", signature(x = "qlifetable", y = "missing"), plot.qlifetable)
+ qlifetable <- setClass("qlifetable", contains = "data.frame")
+ setMethod("plot", signature(x = "qlifetable", y = "missing"), plot.qlifetable)
+
+
+

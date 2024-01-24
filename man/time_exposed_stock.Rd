@@ -65,7 +65,7 @@ time_exposed_ins(D) + time_exposed_newborns(B).
 If the census (stock) of population is performed at the end of the year of interest, only the people
 who survives up to that date is included in the counting. In this case `type = "backward"`
 should be used and the total time exposed at risk, in each age a and (r, s) quarter, is computed
-using the expression: T(a, r, s) = time_exposed_survivors(P) - time_exposed_outs(I) + time_exposed_outs(E) +
+using the expression: T(a, r, s) = time_exposed_stock(P) - time_exposed_outs(I) + time_exposed_outs(E) +
 time_exposed_outs(D).
 }
 \examples{

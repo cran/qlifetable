@@ -42,7 +42,7 @@ Computes the time(s) elapsed (in years) between the date(s) of last birthday and
 }
 \note{
 If `constant.age.year = FALSE` (default), the length of the year for each person is computed as a weighted average of the lengths
-of the years that the person has lived between the dates of birth and event using as weight the time lived for the person during
+of the years that the person has lived between his/her dates of birth and event using as weight the time lived for the person during
 each year.
 }
 \examples{

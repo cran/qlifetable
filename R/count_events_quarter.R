@@ -1,7 +1,7 @@
 #' Data frame of number of events occurring in each Lexis-diagram quarter
 #'
 #' @description  Computes for each integer age and each combination of age and seasonal quarter
-#'               the number of events occurring in population.
+#'               the number of events occurring in the population.
 #'               The computation is performed using the associated data frame of quarterly variables
 #'               corresponding to the population obtained using the \code{\link{quarterly_variables}} function.
 #'
@@ -12,7 +12,7 @@
 #' @param x A data.frame output of the \code{\link{quarterly_variables}} function.
 #'
 #' @return
-#' A data frame with the time exposed at risk for each (potential) combination of integer age and age and
+#' A data frame with the number of events for each (potential) combination of integer age and age and
 #' season quarter of the input dataset. The data frame has the following components:
 #'    \item{age}{ Integer age to which the time exposed at risk corresponds.}
 #'    \item{quarter.age}{ Age quarter to which the time exposed at risk corresponds.}
@@ -57,5 +57,6 @@ count_events_quarter <- function(x){
   table[is.na(table)] <- 0L
 
   table <- methods::new("qlifetable", table)
+  # class(table) <- c("qlifetable", "data.frame")
   return(table)
 }

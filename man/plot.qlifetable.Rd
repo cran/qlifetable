@@ -29,7 +29,7 @@
 
 \item{range.ages}{A vector of integers informing the aggregation of ages for which the graphical representation should be plotted. Default, NULL, the agggregation of all ages is shown.}
 
-\item{key}{Type of statistic to be presented in the plot. Either 'numbers' or relative 'percentages'.}
+\item{key}{Type of statistic to be presented in the plot. Either "numbers" or relative "percentages". Default, "numbers".}
 
 \item{decimal.digits}{Integer indicating the number of decimal places to be shown. Default, 2.}
 
