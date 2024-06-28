@@ -8,7 +8,7 @@
 #' @references Pavia, JM and Lledo, J (2022). Estimation of the Combined Effects of Ageing and Seasonality on Mortality Risk. An application to Spain. *Journal of the Royal Statistical Society, Series A (Statistics in Society)*, 185(2), 471-497. \doi{10.1111/rssa.12769}
 #'
 #' @param table.a A data.frame corresponding to the reference annual life table. The life table can be defined via
-#'                death rates (`mx`, default) or via death probabilities (`qx`). The first column of `table.a` refers to `age`,
+#'                via death probabilities (`qx`, default) or death rates (`mx`). The first column of `table.a` refers to `age`,
 #'                and the second column to either `mx` rates or `qx` probabilities. In case of using death probabilities (`qx`),
 #'                `table.a` can have an optional third column, which refers to the the average number of years lived
 #'                for those dying with age x, `ax`. If this last column is missing ax is assumed to be constant and equal to 0.5.
@@ -47,24 +47,20 @@
 #'  e.death <- e.death[e.death$age <= 100, ]
 #'  t.birth <- time_exposed_newborns(birth_2006$date.birth)
 #'  out <- crude_mx(t.stock, e.death, time.birth = t.birth)
-#'  SAI.example <- compute_SAI(out, out)}
+#'  SAI.example <- compute_SAI(out, out)
+#'  dx <- tapply(e.death$number.events, e.death$age, sum)
+#'  Lax <- tapply(t.stock$time.exposed, t.stock$age, sum)
+#'  table.ex <- data.frame(age = 0:100, mx.a = dx/Lax)
+#'  example <- annual2quarterly(table.a = table.ex, SAIs = SAI.example, mx = TRUE)
+#' }
 #'
-#' dates.b <- c("2017-05-13", "2018-04-12", "2018-12-01")
-#' t.stock <- time_exposed_stock(dates.b, year = 2020, type = "backward")
-#' dates.bd <- c("2018-04-12")
-#' dates.d <- c("2020-05-23")
-#' x <- quarterly_variables(dates.bd, dates.d)
-#' e.death <- count_events_quarter(x)
-#' t.death <- time_exposed_outs(x)
-#' out <- crude_mx(t.stock, e.death, t.death)
-#' SAI.example <- compute_SAI(out, out)
 
 annual2quarterly <- function(table.a, SAIs, mx = FALSE, min.age = 0, max.age = 100){
 
   argg <- as.list(environment())
   SAIs <- check_a2q(argg)
 
-  if (!mx){
+  if (mx){
     colnames(table.a)[1L:2L] <- c("age", "mx")
   } else {
     table.a <- q2m(table.a)
@@ -115,7 +111,7 @@ q2m <- function(tabla){
     colnames(tabla) <- c("age", "qx", "ax")
     ax <- tabla[, 3L]
   }
-  qx <- tabla[, 1L]
+  qx <- tabla[, 2L]
   tabla$mx <- qx/(1 - (1- ax)*qx)
   return(tabla)
 }

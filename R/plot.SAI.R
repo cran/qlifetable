@@ -173,7 +173,7 @@ plot_SAI_margins <- function(x, min.age = 1, max.age = 100, decimal.digits = 1,
                                   ggplot2::aes(x = age.j, y = SAI.norm.j)) +
     ggplot2::geom_line(col = color.main) +
     ggplot2::geom_smooth(formula = y ~ x, se = F, method = "lm",
-                         color = color.lm, size = 0.25) +
+                         color = color.lm, linewidth = 0.25) +
     ggplot2::geom_hline(yintercept = 1, col = color.hline, lty = 2) +
     ggplot2::scale_x_continuous(breaks = axis.age.ticks) +
     ggplot2::facet_wrap("Quarter") +
@@ -291,26 +291,30 @@ plot_SAI_margins <- function(x, min.age = 1, max.age = 100, decimal.digits = 1,
   } else {
     posiciones <- unique(seasonal.figure1$grobs[[2L]]$children[[1L]]$children[[5L]]$x)
   }
+  posiciones <- c(0.145, 0.4575, 0.76)
   ticks0 <- grid::segmentsGrob(x0 = posiciones, x1 = posiciones,
                                y0 = rep(1 - 0.007, length(posiciones)),
                                y1 = rep(1 - .018, length(posiciones)),
                                gp = grid::gpar(lwd = 1.35))
   ticks0 <- grid::grobTree(blank, children = grid::gList(ticks0))
 
-  labels.ages0 <- grid::textGrob(axis.age.ticks, x = posiciones, y = rep(0.35, length(posiciones)),
-                                gp = grid::gpar(cex = 8.7/12, col = "grey30"))
+  labels.ages0 <- grid::textGrob(axis.age.ticks, x = posiciones,
+                                 y = rep(0.35, length(posiciones)),
+                                 gp = grid::gpar(cex = 8.7/12, col = "grey30"))
   labels.ages0 <- grid::grobTree(blank, children = grid::gList(labels.ages0))
 
-  ticks <- gridExtra::arrangeGrob( blank, ticks0, blank, blank,
-                                   ncol = 4L,
-                                   widths = ageing.figure1$widths[c(1L, 5L, 6L, 9L)])
+  #1 ticks <- gridExtra::arrangeGrob( blank, ticks0, blank, blank,
+  #1                                 ncol = 4L,
+  #1                                 widths = ageing.figure1$widths[c(1L, 5L, 6L, 9L)])
+  ticks <- gridExtra::arrangeGrob(ticks0)
 
-  labels.ages <- gridExtra::arrangeGrob( blank, labels.ages0, blank, blank,
-                                         ncol = 4L,
-                                         widths = ageing.figure1$widths[c(1L, 5L, 6L, 9L)])
+  #1 labels.ages <- gridExtra::arrangeGrob( blank, labels.ages0, blank, blank,
+  #1                                        ncol = 4L,
+  #1                                        widths = ageing.figure1$widths[c(1L, 5L, 6L, 9L)])
 
+  labels.ages <- gridExtra::arrangeGrob(labels.ages0)
   ageing.figure <- grid::grobTree(ticks, children = grid::gList(ageing.figure1))
-  # ageing.figure <- grid::grobTree(labels.ages, children = grid::gList(ageing.figure))
+  ageing.figure <- grid::grobTree(labels.ages, children = grid::gList(ageing.figure))
 
   ageing.label <- grid::textGrob(title.ageing, x = .48, y = 1.02, gp = grid::gpar(cex = .85))
   ageing.label <- grid::grobTree(blank, children = grid::gList(ageing.label))

@@ -61,6 +61,8 @@
 #'  e.death <- count_events_quarter(temp)
 #'  out <- crude_mx_sh2(pop, pop, e.death)
 #' }
+#'
+#' # Fast example
 #' pop.1 <- data.frame(age = c(40, 41), people = c(4134, 4353))
 #' pop.2 <- data.frame(age = c(40, 41), people = c(4250, 4213))
 #' dates.b <- c("1980-04-12")

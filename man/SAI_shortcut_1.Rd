@@ -57,6 +57,8 @@ Given a set of data frames with the number of deaths recorded in a population/po
  e.death <- count_events_quarter(temp)
  SAI.example <- SAI_shortcut_1(e.death, e.death)
 }
+
+# Fast example
 dates.b <- c("2017-05-13", "2018-04-12", "2018-01-01")
 dates.d <- c("2020-09-23", "2021-10-11", "2021-11-23")
 x <- quarterly_variables(dates.b, dates.d)

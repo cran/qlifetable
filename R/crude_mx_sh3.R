@@ -82,6 +82,8 @@
 #'  e.immi <- count_events_quarter(temp)
 #'  out <- crude_mx_sh3(pop, pop, e.death, e.emi, e.immi)
 #' }
+#'
+#' # Fast example
 #' pop.1 <- data.frame(age = c(rep(40, 4), rep(41, 4)), quarter = rep(1:4, 2), people = c(4134, 4353))
 #' pop.2 <- data.frame(age = c(rep(40, 4), rep(41, 4)), quarter = rep(1:4, 2), people = c(4250, 4213))
 #' dates.b <- c("1980-04-12")

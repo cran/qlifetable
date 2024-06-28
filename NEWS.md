@@ -1,6 +1,12 @@
+### Package changes from previous qlifetable version 0.0.2-4
+
+The way grobs are defined in the method **plot** for objects of class SAI has been modified to accomodate some changes made in new versions of ggplot2 (>=3.5.0).
+
+A bug in the function **annual2quaterly** has been fixed when its input annual life table is defined using death rates (mx).
+
 ### Package changes from previous qlifetable version 0.0.1-15
 
-The previous version (0.0.1-15= of qlifetable just computes from microdata the summary statistics to build quarterly life tables. This new version includes two new sets of functions. On the one hand, `qlifetable` now incorporates a bunch of functions to construct from summary statistics Seasonal-ageing indexes (SAIs) and quarterly life tables and, on the other hand, the new version also has new functions to estimate SAIs approximations as detailed in Pavía and Lledó (2023) <doi:10.1017/asb.2023.16>.
+The previous version (0.0.1-15) of qlifetable just computes from microdata the summary statistics to build quarterly life tables. This new version includes two new sets of functions. On the one hand, `qlifetable` now incorporates a bunch of functions to construct from summary statistics Seasonal-ageing indexes (SAIs) and quarterly life tables and, on the other hand, the new version also has new functions to estimate SAIs approximations as detailed in Pavía and Lledó (2023) <doi:10.1017/asb.2023.16>.
 
 The list of new functions includes:
 

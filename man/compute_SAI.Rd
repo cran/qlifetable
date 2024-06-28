@@ -55,6 +55,8 @@ Given a set of quarterly tables of crude rates estimates corresponding to severa
  out <- crude_mx(t.stock, e.death, time.birth = t.birth)
  SAI.example <- compute_SAI(out, out)
 }
+
+# Fast example
 dates.b <- c("2017-05-13", "2018-04-12", "2018-12-01")
 t.stock <- time_exposed_stock(dates.b, year = 2020, type = "backward")
 dates.bd <- c("2018-04-12")
