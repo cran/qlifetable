@@ -6,6 +6,7 @@
 #' @author Jose M. Pavia \email{pavia@@uv.es}
 #' @author Josep Lledo \email{josep.lledo@@uv.es}
 #' @references Pavia, JM and Lledo, J (2022). Estimation of the Combined Effects of Ageing and Seasonality on Mortality Risk. An application to Spain. *Journal of the Royal Statistical Society, Series A (Statistics in Society)*, 185(2), 471-497. \doi{10.1111/rssa.12769}
+#' @references Pavia, JM and Lledo, J (2025). qlifetable: An R package for constructing quarterly life tables. *PLoS ONE*, 20(2), e0315937. \doi{10.1371/journal.pone.0315937}
 #'
 #' @param x A data.frame/list output of either \code{\link{crude_mx}}, \code{\link{crude_mx_sh2}} or \code{\link{crude_mx_sh3}} functions corresponding to a period (typically a year).
 #' @param y A data.frame/list output of either \code{\link{crude_mx}}, \code{\link{crude_mx_sh2}} or \code{\link{crude_mx_sh3}} functions corresponding to another period (typically a different year than the one corresponding to `x`).

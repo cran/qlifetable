@@ -1,3 +1,8 @@
+### Package changes from previous qlifetable version 0.0.2-5
+
+A new reference: 3.	Pavía, JM and Lledó, J (2025) "qlifetable: An R package for constructing quarterly life tables", PLoS ONE, 20(2), e0315937. DOI: https://doi.org/10.1371/journal.pone.0315937, 
+which describes all the details of the package is included.
+
 ### Package changes from previous qlifetable version 0.0.2-4
 
 The way grobs are defined in the method **plot** for objects of class SAI has been modified to accomodate some changes made in new versions of ggplot2 (>=3.5.0).

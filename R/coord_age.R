@@ -6,6 +6,7 @@
 #' @author Jose M. Pavia \email{pavia@@uv.es}
 #' @author Josep Lledo \email{josep.lledo@@uv.es}
 #' @references Pavia, JM and Lledo, J (2022). Estimation of the Combined Effects of Ageing and Seasonality on Mortality Risk. An application to Spain. *Journal of the Royal Statistical Society, Series A (Statistics in Society)*, 185(2), 471-497. \doi{10.1111/rssa.12769}
+#' @references Pavia, JM and Lledo, J (2025). qlifetable: An R package for constructing quarterly life tables. *PLoS ONE*, 20(2), e0315937. \doi{10.1371/journal.pone.0315937}
 #'
 #' @param date.birth A character vector with the dates of birth in format either "yyyy-mm-dd" or "yyyy-mm-dd hour:min:secs" (for instance, "2016-01-20 12:00:00") of a population.
 #'                   If "hour:min:secs" is omitted the function imputes either "12:00:00", if `random.b = FALSE`, or

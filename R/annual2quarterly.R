@@ -6,6 +6,7 @@
 #' @author Jose M. Pavia \email{pavia@@uv.es}
 #' @author Josep Lledo \email{josep.lledo@@uv.es}
 #' @references Pavia, JM and Lledo, J (2022). Estimation of the Combined Effects of Ageing and Seasonality on Mortality Risk. An application to Spain. *Journal of the Royal Statistical Society, Series A (Statistics in Society)*, 185(2), 471-497. \doi{10.1111/rssa.12769}
+#' @references Pavia, JM and Lledo, J (2025). qlifetable: An R package for constructing quarterly life tables. *PLoS ONE*, 20(2), e0315937. \doi{10.1371/journal.pone.0315937}
 #'
 #' @param table.a A data.frame corresponding to the reference annual life table. The life table can be defined via
 #'                via death probabilities (`qx`, default) or death rates (`mx`). The first column of `table.a` refers to `age`,

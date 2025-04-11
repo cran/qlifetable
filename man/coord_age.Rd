@@ -52,6 +52,8 @@ coord_age(dates.b, dates.e)
 }
 \references{
 Pavia, JM and Lledo, J (2022). Estimation of the Combined Effects of Ageing and Seasonality on Mortality Risk. An application to Spain. *Journal of the Royal Statistical Society, Series A (Statistics in Society)*, 185(2), 471-497. \doi{10.1111/rssa.12769}
+
+Pavia, JM and Lledo, J (2025). qlifetable: An R package for constructing quarterly life tables. *PLoS ONE*, 20(2), e0315937. \doi{10.1371/journal.pone.0315937}
 }
 \seealso{
 \code{\link{coord_time}}, \code{\link{exact_age}}
